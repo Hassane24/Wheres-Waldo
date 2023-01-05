@@ -5,6 +5,10 @@
   background-color: #212d40;
   padding: 0.4rem;
   color: white;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 20vh;
 }
 
 .chars-left {
