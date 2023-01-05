@@ -1,0 +1,49 @@
+/* Navbar styling  */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  background-color: #212d40;
+  padding: 0.4rem;
+  color: white;
+}
+
+.chars-left {
+  margin-left: auto;
+  background-color: #de3c4b;
+  padding: 1rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+}
+
+/* Char holder styling */
+
+.char-holder {
+  margin-right: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  font-size: 1.5rem;
+  align-items: center;
+}
+
+.char-holder .vash,
+.char-holder .no-face,
+.char-holder .saitama {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: top center;
+  border-radius: 50%;
+}
+
+.char-holder .vash {
+  background-image: url("../assets/vash-the-stampede.jpg");
+}
+
+.char-holder .no-face {
+  background-image: url("../assets/no-face.jpg");
+}
+
+.char-holder .saitama {
+  background-image: url("../assets/saitama.jpg");
+}
