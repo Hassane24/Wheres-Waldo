@@ -1,6 +1,6 @@
-const CharacterHolder = ({ image, charName }) => (
+const CharacterHolder = ({ className, charName }) => (
   <div className="char-holder">
-    <img src={image} alt="" className="char" />
+    <div className={className} />
     <div className="char-name">{charName}</div>
   </div>
 );
