@@ -1,7 +1,15 @@
-const MouseClick = ({ clicked, x, y }) => {
+const MouseClick = ({ clicked, top, left }) => {
   if (clicked)
     return (
-      <div style={{ position: "fixed", top: y, left: x, zIndex: 1 }}>
+      <div
+        style={{
+          position: "fixed",
+          top: top + "px",
+          left: left + "px",
+          zIndex: 15,
+          color: "white",
+        }}
+      >
         <div>No foce</div>
         <div>Saitama</div>
         <div>Vash</div>

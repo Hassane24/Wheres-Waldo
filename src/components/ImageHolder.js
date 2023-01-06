@@ -13,12 +13,12 @@ const ImageHolder = ({ handleClick }) => {
         src={universe113}
         onClick={(e) => {
           setClicked(!clicked);
-          setX(e.pageX);
-          setY(e.pageY);
+          setX(e.clientX);
+          setY(e.clientY);
           handleClick(e);
         }}
       />
-      <MouseClick clicked={clicked} x={x + 10} y={y + 5}></MouseClick>
+      <MouseClick clicked={clicked} left={x + 10} top={y + 5}></MouseClick>
     </div>
   );
 };
