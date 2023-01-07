@@ -2,10 +2,10 @@ import { useState } from "react";
 import MouseClick from "./MouseClick";
 import universe113 from "../assets/universe-113.jpg";
 import "../styles/ImageHolder.css";
-const ImageHolder = ({ handleClick }) => {
+const ImageHolder = ({ handleClick, clickHandler }) => {
   const [clicked, setClicked] = useState(false);
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
+  const [imageX, setImageX] = useState(0);
+  const [imageY, setImageY] = useState(0);
 
   return (
     <div className="image-holder">
@@ -13,12 +13,17 @@ const ImageHolder = ({ handleClick }) => {
         src={universe113}
         onClick={(e) => {
           setClicked(!clicked);
-          setX(e.clientX);
-          setY(e.clientY);
+          setImageX(e.clientX);
+          setImageY(e.clientY);
           handleClick(e);
         }}
       />
-      <MouseClick clicked={clicked} left={x + 10} top={y + 5}></MouseClick>
+      <MouseClick
+        clicked={clicked}
+        left={imageX + 10}
+        top={imageY + 5}
+        clickHandler={clickHandler}
+      ></MouseClick>
     </div>
   );
 };

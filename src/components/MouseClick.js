@@ -1,4 +1,4 @@
-const MouseClick = ({ clicked, top, left }) => {
+const MouseClick = ({ clicked, top, left, clickHandler }) => {
   if (clicked)
     return (
       <div
@@ -9,8 +9,9 @@ const MouseClick = ({ clicked, top, left }) => {
           zIndex: 15,
           color: "white",
         }}
+        onClick={clickHandler}
       >
-        <div>No foce</div>
+        <div>No face</div>
         <div>Saitama</div>
         <div>Vash</div>
       </div>
