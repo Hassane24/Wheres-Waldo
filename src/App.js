@@ -13,6 +13,7 @@ const App = () => {
     { charName: "saitama" },
     { charName: "vash" },
   ]);
+  const [foundChars, setFoundChars] = useState([]);
 
   const handleClick = (event) => {
     setX(parseFloat((event.pageX / event.target.offsetWidth).toFixed(4)));
@@ -39,9 +40,18 @@ const App = () => {
     }
   };
 
+  const showFeedBackMessage = () => {
+    const feedBackElement = document.querySelector(".click-feed-back");
+    if (foundChars === undefined || foundChars.length == 0) return "";
+    else {
+      feedBackElement.classList.add("active");
+      return foundChars[foundChars.length].charName || "";
+    }
+  };
+
   return (
     <>
-      <NavBar charsLeft={chars.length} feedBack="" />
+      <NavBar charsLeft={chars.length} feedBack={showFeedBackMessage()} />
       <ImageHolder handleClick={handleClick} clickHandler={clickHandler} />
     </>
   );

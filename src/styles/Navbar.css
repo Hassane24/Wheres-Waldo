@@ -58,7 +58,10 @@
 .click-feed-back {
   font-size: 1.5rem;
   margin: auto;
-  background-color: #de3c4b;
   padding: 1rem;
   border-radius: 1rem;
+}
+
+.click-feed-back.active {
+  background-color: #de3c4b;
 }

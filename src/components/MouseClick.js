@@ -12,8 +12,8 @@ const MouseClick = ({ clicked, top, left, clickHandler }) => {
         onClick={clickHandler}
       >
         <div>No face</div>
-        <div>Saitama</div>
         <div>Vash</div>
+        <div>Saitama</div>
       </div>
     );
   return null;
