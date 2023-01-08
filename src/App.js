@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import ImageHolder from "./components/ImageHolder";
 import NavBar from "./components/Navbar";
@@ -33,9 +33,17 @@ const App = () => {
       if (x < xMax && x > xMin && y < yMax && y > yMin) {
         setChars((prevState) => {
           let newState = [...prevState];
+          // finding the character before deleting it from chars array so to push it into foundChars array
+          const foundChar = newState.find((char) => char.charName === charName);
+          setFoundChars([...foundChars, foundChar]);
           newState = newState.filter((char) => char.charName !== charName);
           return newState;
         });
+      } else {
+        // handles the case where a user clicks on the wrong place
+        const feedBackElement = document.querySelector(".click-feed-back");
+        feedBackElement.classList.add("active");
+        feedBackElement.textContent = "Keep looking";
       }
     }
   };
@@ -45,7 +53,11 @@ const App = () => {
     if (foundChars === undefined || foundChars.length == 0) return "";
     else {
       feedBackElement.classList.add("active");
-      return foundChars[foundChars.length].charName || "";
+      // the last element in the foundChars array is always the most recent character found
+      const foundCharName = foundChars[foundChars.length - 1].charName
+        .split("-")
+        .join(" ");
+      return `You found ${foundCharName}`;
     }
   };
 
