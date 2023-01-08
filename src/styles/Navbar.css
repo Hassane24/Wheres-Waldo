@@ -52,3 +52,13 @@
 .char-holder .saitama {
   background-image: url("../assets/saitama.jpg");
 }
+
+/* Feed back message styling */
+
+.click-feed-back {
+  font-size: 1.5rem;
+  margin: auto;
+  background-color: #de3c4b;
+  padding: 1rem;
+  border-radius: 1rem;
+}

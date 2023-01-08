@@ -41,7 +41,7 @@ const App = () => {
 
   return (
     <>
-      <NavBar charsLeft={chars.length} />
+      <NavBar charsLeft={chars.length} feedBack="" />
       <ImageHolder handleClick={handleClick} clickHandler={clickHandler} />
     </>
   );
