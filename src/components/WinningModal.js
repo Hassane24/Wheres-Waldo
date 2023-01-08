@@ -22,6 +22,6 @@ const WinningModal = ({ won, handleModalClick, time, highScores }) => {
         </div>
       </div>
     );
-  else null;
+  return null;
 };
 export default WinningModal;
