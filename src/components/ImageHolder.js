@@ -2,7 +2,7 @@ import { useState } from "react";
 import MouseClick from "./MouseClick";
 import universe113 from "../assets/universe-113.jpg";
 import "../styles/ImageHolder.css";
-const ImageHolder = ({ handleClick, clickHandler }) => {
+const ImageHolder = ({ handleClick, clickHandler, chars }) => {
   const [clicked, setClicked] = useState(false);
   const [imageX, setImageX] = useState(0);
   const [imageY, setImageY] = useState(0);
@@ -19,6 +19,7 @@ const ImageHolder = ({ handleClick, clickHandler }) => {
         }}
       />
       <MouseClick
+        chars={chars}
         clicked={clicked}
         left={imageX + 10}
         top={imageY + 5}

@@ -1,4 +1,4 @@
-const MouseClick = ({ clicked, top, left, clickHandler }) => {
+const MouseClick = ({ clicked, top, left, clickHandler, chars }) => {
   if (clicked)
     return (
       <div
@@ -6,14 +6,18 @@ const MouseClick = ({ clicked, top, left, clickHandler }) => {
           position: "fixed",
           top: top + "px",
           left: left + "px",
-          zIndex: 15,
+          zIndex: 1,
           color: "white",
         }}
         onClick={clickHandler}
       >
-        <div>No face</div>
-        <div>Vash</div>
-        <div>Saitama</div>
+        {chars.map((char, index) => (
+          <li key={index}>
+            {/* all this just to get rid of that "-" on "no-face" */}
+            {char.charName.charAt(0).toUpperCase() +
+              char.charName.slice(1).split("-").join(" ")}
+          </li>
+        ))}
       </div>
     );
   return null;

@@ -10,8 +10,8 @@ const App = () => {
   const [y, setY] = useState(0);
   const [chars, setChars] = useState([
     { charName: "no-face" },
-    { charName: "saitama" },
     { charName: "vash" },
+    { charName: "saitama" },
   ]);
   const [foundChars, setFoundChars] = useState([]);
 
@@ -64,7 +64,11 @@ const App = () => {
   return (
     <>
       <NavBar charsLeft={chars.length} feedBack={showFeedBackMessage()} />
-      <ImageHolder handleClick={handleClick} clickHandler={clickHandler} />
+      <ImageHolder
+        handleClick={handleClick}
+        clickHandler={clickHandler}
+        chars={chars}
+      />
     </>
   );
 };
