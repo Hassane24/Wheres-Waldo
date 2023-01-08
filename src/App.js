@@ -27,16 +27,9 @@ const App = () => {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data());
       const doc = docSnap.data();
-      const minX = doc.xMin;
-      const maxX = doc.xMax;
-      const maxy = doc.yMax;
-      const minY = doc.yMin;
-      console.log(maxX, minX);
-      console.log(x < maxX && x > minX && y < maxy && y > minY);
-      console.log(x, y);
-      if (x < maxX && x > minX && y < maxy && y > minY) {
+      const { xMax, xMin, yMax, yMin } = doc;
+      if (x < xMax && x > xMin && y < yMax && y > yMin) {
         setChars((prevState) => {
           let newState = [...prevState];
           newState = newState.filter((char) => char.charName !== charName);

@@ -22,7 +22,10 @@ const ImageHolder = ({ handleClick, clickHandler }) => {
         clicked={clicked}
         left={imageX + 10}
         top={imageY + 5}
-        clickHandler={clickHandler}
+        clickHandler={(e) => {
+          setClicked(!clicked);
+          clickHandler(e);
+        }}
       ></MouseClick>
     </div>
   );
