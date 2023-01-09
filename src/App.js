@@ -16,6 +16,17 @@ const App = () => {
     { charName: "saitama" },
   ]);
   const [foundChars, setFoundChars] = useState([]);
+  const [didGameEnd, setDidGameEnd] = useState(false);
+
+  const gameIsWon = () => {
+    if (foundChars.length === 2) {
+      const WinningModal = document.querySelector(".winning-modal");
+      const overlay = document.querySelector(".overlay");
+      WinningModal.classList.add("active");
+      overlay.classList.add("active");
+      return setDidGameEnd(true);
+    }
+  };
 
   const handleClick = (event) => {
     setX(parseFloat((event.pageX / event.target.offsetWidth).toFixed(4)));
@@ -33,6 +44,7 @@ const App = () => {
       const doc = docSnap.data();
       const { xMax, xMin, yMax, yMin } = doc;
       if (x < xMax && x > xMin && y < yMax && y > yMin) {
+        gameIsWon();
         setChars((prevState) => {
           let newState = [...prevState];
           // finding the character before deleting it from chars array so to push it into foundChars array
@@ -68,7 +80,7 @@ const App = () => {
       <NavBar
         charsLeft={chars.length}
         feedBack={showFeedBackMessage()}
-        didGameEnd={false}
+        didGameEnd={didGameEnd}
       />
       <ImageHolder
         handleClick={handleClick}
@@ -76,7 +88,7 @@ const App = () => {
         chars={chars}
       />
       <WinningModal
-        won={true}
+        won={didGameEnd}
         highScores={[
           "00:00:00",
           "00:00:00",
@@ -84,7 +96,6 @@ const App = () => {
           "00:00:00",
           "00:00:00",
         ]}
-        time={<Timer didGameEnd={true}></Timer>}
       />
     </>
   );

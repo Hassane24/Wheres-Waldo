@@ -15,11 +15,6 @@ const Timer = ({ didGameEnd }) => {
         return setSeconds(0);
       }
       setSeconds(seconds + 1);
-    } else {
-      const formatedTime = `${formattedMinutes}:${formattedSeconds}`;
-      setMinutes(0);
-      setSeconds(0);
-      return formatedTime;
     }
   };
   setTimeout(timer, 1000);
