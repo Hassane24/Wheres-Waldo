@@ -5,6 +5,7 @@ import NavBar from "./components/Navbar";
 import WinningModal from "./components/WinningModal";
 import { firestore } from "./firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
+import Timer from "./components/Timer";
 
 const App = () => {
   const [x, setX] = useState(0);
@@ -64,7 +65,11 @@ const App = () => {
 
   return (
     <>
-      <NavBar charsLeft={chars.length} feedBack={showFeedBackMessage()} />
+      <NavBar
+        charsLeft={chars.length}
+        feedBack={showFeedBackMessage()}
+        didGameEnd={false}
+      />
       <ImageHolder
         handleClick={handleClick}
         clickHandler={clickHandler}
@@ -79,6 +84,7 @@ const App = () => {
           "00:00:00",
           "00:00:00",
         ]}
+        time={<Timer didGameEnd={true}></Timer>}
       />
     </>
   );
