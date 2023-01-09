@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MouseClick from "./MouseClick";
+import DropDownMenu from "./DropDownMenu";
 import universe113 from "../assets/universe-113.jpg";
 import "../styles/ImageHolder.css";
 const ImageHolder = ({ handleClick, clickHandler, chars }) => {
@@ -18,7 +18,7 @@ const ImageHolder = ({ handleClick, clickHandler, chars }) => {
           handleClick(e);
         }}
       />
-      <MouseClick
+      <DropDownMenu
         chars={chars}
         clicked={clicked}
         left={imageX + 10}
@@ -27,7 +27,7 @@ const ImageHolder = ({ handleClick, clickHandler, chars }) => {
           setClicked(!clicked);
           clickHandler(e);
         }}
-      ></MouseClick>
+      ></DropDownMenu>
     </div>
   );
 };

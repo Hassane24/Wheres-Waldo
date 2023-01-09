@@ -1,4 +1,4 @@
-const MouseClick = ({ clicked, top, left, clickHandler, chars }) => {
+const DropDownMenu = ({ clicked, top, left, clickHandler, chars }) => {
   if (clicked)
     return (
       <div
@@ -23,4 +23,4 @@ const MouseClick = ({ clicked, top, left, clickHandler, chars }) => {
   return null;
 };
 
-export default MouseClick;
+export default DropDownMenu;

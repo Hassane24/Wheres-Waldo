@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import ImageHolder from "./components/ImageHolder";
 import NavBar from "./components/Navbar";
+import WinningModal from "./components/WinningModal";
 import { firestore } from "./firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
 
@@ -68,6 +69,16 @@ const App = () => {
         handleClick={handleClick}
         clickHandler={clickHandler}
         chars={chars}
+      />
+      <WinningModal
+        won={true}
+        highScores={[
+          "00:00:00",
+          "00:00:00",
+          "00:00:00",
+          "00:00:00",
+          "00:00:00",
+        ]}
       />
     </>
   );

@@ -1,0 +1,104 @@
+.winning-modal {
+  display: flex;
+  position: fixed;
+  top: calc(50%);
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  flex-direction: column;
+  background-color: #002642;
+  padding: 2rem;
+  border-radius: 1rem;
+  gap: 2rem;
+  width: 40%;
+  height: 50%;
+  color: white;
+  z-index: 100;
+}
+
+.winning-modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.winning-message {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* styling of high score container and its elements */
+
+.high-score-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.high-scores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.high-scores ol {
+  font-size: 1.3rem;
+  padding-right: 2rem;
+}
+
+.high-scores li {
+  margin-bottom: 10px;
+}
+
+/* styling of restart container and its elements */
+
+.restart {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.restart-button {
+  background: linear-gradient(93deg, #2a2c80 -35%, #fd1d1d);
+  border: none;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  align-self: flex-end;
+  width: 100%;
+  color: white;
+  transition: ease-in-out 200ms;
+}
+
+.restart-button:hover {
+  transform: scale(110%);
+  cursor: pointer;
+}
+
+.restart h1 {
+  margin-bottom: 0;
+}
+
+.restart h3 {
+  font-size: 1.5rem;
+}
+
+/* this is what makes the background blackish */
+
+.overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
