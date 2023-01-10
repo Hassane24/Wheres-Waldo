@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Wheres-Waldo/static/css/main.fb53ef91.css",
-    "main.js": "/Wheres-Waldo/static/js/main.b532c861.js",
+    "main.css": "/Wheres-Waldo/static/css/main.5d3bdf38.css",
+    "main.js": "/Wheres-Waldo/static/js/main.fb1e3930.js",
     "static/media/universe-113.jpg": "/Wheres-Waldo/static/media/universe-113.0d4fe7c106039f77baa0.jpg",
     "static/media/no-face.jpg": "/Wheres-Waldo/static/media/no-face.bd9954d3e73ad6b1f552.jpg",
     "static/media/vash-the-stampede.jpg": "/Wheres-Waldo/static/media/vash-the-stampede.1ba91444a414ebddcd96.jpg",
     "static/media/saitama.jpg": "/Wheres-Waldo/static/media/saitama.ae9a38477bd88081f060.jpg",
     "index.html": "/Wheres-Waldo/index.html",
-    "main.fb53ef91.css.map": "/Wheres-Waldo/static/css/main.fb53ef91.css.map",
-    "main.b532c861.js.map": "/Wheres-Waldo/static/js/main.b532c861.js.map"
+    "main.5d3bdf38.css.map": "/Wheres-Waldo/static/css/main.5d3bdf38.css.map",
+    "main.fb1e3930.js.map": "/Wheres-Waldo/static/js/main.fb1e3930.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb53ef91.css",
-    "static/js/main.b532c861.js"
+    "static/css/main.5d3bdf38.css",
+    "static/js/main.fb1e3930.js"
   ]
 }
