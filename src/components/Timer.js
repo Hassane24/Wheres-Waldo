@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Timer = ({ didGameEnd, setState }) => {
+const Timer = ({ didGameEnd }) => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const timeFomatter = (value) =>

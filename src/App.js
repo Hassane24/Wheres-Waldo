@@ -88,7 +88,7 @@ const App = () => {
 
   const showFeedBackMessage = () => {
     const feedBackElement = document.querySelector(".click-feed-back");
-    if (foundChars === undefined || foundChars.length == 0) return "";
+    if (foundChars === undefined || foundChars.length === 0) return "";
     else {
       feedBackElement.classList.add("active");
       // the last element in the foundChars array is always the most recent character found
@@ -102,7 +102,7 @@ const App = () => {
   return (
     <>
       <NavBar
-        charsLeft={chars.length}
+        charsLeft={chars}
         feedBack={showFeedBackMessage()}
         didGameEnd={didGameEnd}
       />

@@ -3,12 +3,20 @@ import Timer from "./Timer";
 import "../styles/Navbar.css";
 const NavBar = ({ charsLeft, feedBack, didGameEnd }) => (
   <div className="nav-bar">
-    <CharacterHolder className="no-face" charName="No face" />
-    <CharacterHolder className="saitama" charName="Saitama" />
-    <CharacterHolder className="vash" charName="Vash" />
+    {charsLeft.map((char, index) => (
+      <CharacterHolder
+        key={index}
+        charName={
+          char.charName.charAt(0).toUpperCase() +
+          char.charName.slice(1).split("-").join(" ")
+        }
+        className={char.charName}
+      ></CharacterHolder>
+    ))}
+
     <div className="click-feed-back">{feedBack}</div>
     <Timer didGameEnd={didGameEnd} />
-    <div className="chars-left">{charsLeft}</div>
+    <div className="chars-left">{charsLeft.length}</div>
   </div>
 );
 export default NavBar;
