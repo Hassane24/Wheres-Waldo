@@ -1,0 +1,19 @@
+.image-holder > div {
+  background-color: #212d40;
+  padding: 1rem;
+  padding-bottom: 0;
+  border-radius: 1rem;
+}
+
+.image-holder > div li {
+  font-size: clamp(1rem, 0.4231rem + 1vw, 3.5rem);
+  list-style-type: none;
+  margin-bottom: 16px;
+  transition: ease-in-out 100ms;
+}
+
+.image-holder > div li:hover {
+  transform: scale(105%);
+  text-decoration: underline;
+  cursor: pointer;
+}

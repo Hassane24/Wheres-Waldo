@@ -1,3 +1,4 @@
+import "../styles/DropDownMenu.css";
 const DropDownMenu = ({ clicked, top, left, clickHandler, chars }) => {
   if (clicked)
     return (

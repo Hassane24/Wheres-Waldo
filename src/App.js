@@ -5,7 +5,6 @@ import NavBar from "./components/Navbar";
 import WinningModal from "./components/WinningModal";
 import { firestore } from "./firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import Timer from "./components/Timer";
 
 const App = () => {
   const [x, setX] = useState(0);
