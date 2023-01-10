@@ -1,6 +1,5 @@
-import Timer from "./Timer";
 import "../styles/WinningModal.css";
-const WinningModal = ({ won, handleModalClick, highScores }) => {
+const WinningModal = ({ handleModalClick, highScores }) => {
   return (
     <>
       <div className="winning-modal" onClick={handleModalClick}>
@@ -18,9 +17,7 @@ const WinningModal = ({ won, handleModalClick, highScores }) => {
           </div>
           <div className="restart">
             <h1>Your time: </h1>
-            <h3>
-              <Timer didGameEnd={won}></Timer>
-            </h3>
+            <h3></h3>
             <button className="restart-button">Restart</button>
           </div>
         </div>

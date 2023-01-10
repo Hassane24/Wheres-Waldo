@@ -1,5 +1,5 @@
 import { useState } from "react";
-const Timer = ({ didGameEnd }) => {
+const Timer = ({ didGameEnd, setState }) => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const timeFomatter = (value) =>
@@ -15,14 +15,17 @@ const Timer = ({ didGameEnd }) => {
         return setSeconds(0);
       }
       setSeconds(seconds + 1);
+    } else {
+      setMinutes(0);
+      setSeconds(0);
     }
   };
   setTimeout(timer, 1000);
 
   return (
-    <>
+    <div className="timer">
       {formattedMinutes}:{formattedSeconds}
-    </>
+    </div>
   );
 };
 

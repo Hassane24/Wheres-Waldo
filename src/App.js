@@ -18,12 +18,16 @@ const App = () => {
   const [didGameEnd, setDidGameEnd] = useState(false);
 
   const gameIsWon = () => {
+    const WinningModal = document.querySelector(".winning-modal");
+    const overlay = document.querySelector(".overlay");
+    const timer = document.querySelector(".timer");
+    const userTime = document.querySelector(".restart h3");
+
     if (foundChars.length === 2) {
-      const WinningModal = document.querySelector(".winning-modal");
-      const overlay = document.querySelector(".overlay");
+      setDidGameEnd(true);
       WinningModal.classList.add("active");
       overlay.classList.add("active");
-      return setDidGameEnd(true);
+      userTime.textContent = timer.textContent;
     }
   };
 
@@ -61,6 +65,27 @@ const App = () => {
     }
   };
 
+  const handleModalClick = (e) => {
+    const feedBackElement = document.querySelector(".click-feed-back");
+    const WinningModal = document.querySelector(".winning-modal");
+    const overlay = document.querySelector(".overlay");
+
+    if (e.target.nodeName === "BUTTON") {
+      setChars([
+        { charName: "no-face" },
+        { charName: "vash" },
+        { charName: "saitama" },
+      ]);
+      setDidGameEnd(false);
+      setFoundChars([]);
+      setX(0);
+      setY(0);
+      feedBackElement.classList.remove("active");
+      WinningModal.classList.remove("active");
+      overlay.classList.remove("active");
+    }
+  };
+
   const showFeedBackMessage = () => {
     const feedBackElement = document.querySelector(".click-feed-back");
     if (foundChars === undefined || foundChars.length == 0) return "";
@@ -87,7 +112,7 @@ const App = () => {
         chars={chars}
       />
       <WinningModal
-        won={didGameEnd}
+        handleModalClick={handleModalClick}
         highScores={[
           "00:00:00",
           "00:00:00",
