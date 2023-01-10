@@ -2,6 +2,7 @@ import { useState } from "react";
 import DropDownMenu from "./DropDownMenu";
 import universe113 from "../assets/universe-113.jpg";
 import "../styles/ImageHolder.css";
+import MadeBy from "./MadeBy";
 const ImageHolder = ({ handleClick, clickHandler, chars }) => {
   const [clicked, setClicked] = useState(false);
   const [imageX, setImageX] = useState(0);
@@ -27,7 +28,8 @@ const ImageHolder = ({ handleClick, clickHandler, chars }) => {
           setClicked(!clicked);
           clickHandler(e);
         }}
-      ></DropDownMenu>
+      />
+      <MadeBy />
     </div>
   );
 };

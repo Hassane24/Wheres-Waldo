@@ -1,8 +1,10 @@
 .image-holder {
   width: 100%;
+  position: relative;
   margin-top: 151px;
 }
 
 .image-holder > img {
+  position: relative;
   max-width: 100%;
 }
