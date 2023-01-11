@@ -10,22 +10,25 @@ let highScore = [];
 const App = () => {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+  const [foundChars, setFoundChars] = useState([]);
+  const [didGameEnd, setDidGameEnd] = useState(false);
+  const [valueForInput, setValueForInput] = useState("");
+  const [showInputForUser, setShowInputForUser] = useState(false);
   const [chars, setChars] = useState([
     { charName: "no-face" },
     { charName: "vash" },
     { charName: "saitama" },
   ]);
-  const [foundChars, setFoundChars] = useState([]);
-  const [didGameEnd, setDidGameEnd] = useState(false);
 
   const gameIsWon = async () => {
     const WinningModal = document.querySelector(".winning-modal");
     const overlay = document.querySelector(".overlay");
-    const timer = document.querySelector(".timer");
     const userTime = document.querySelector(".restart h3");
+    const timer = document.querySelector(".timer");
 
     if (foundChars.length === 2) {
-      await getHighScoresFromDB();
+      const highScoresFromDB = await getHighScoresFromDB();
+      fiveScoresOrNot(highScoresFromDB, timer);
       setDidGameEnd(true);
       WinningModal.classList.add("active");
       overlay.classList.add("active");
@@ -72,7 +75,7 @@ const App = () => {
     const WinningModal = document.querySelector(".winning-modal");
     const overlay = document.querySelector(".overlay");
 
-    if (e.target.nodeName === "BUTTON") {
+    if (e.target.className === "restart-button") {
       setChars([
         { charName: "no-face" },
         { charName: "vash" },
@@ -82,6 +85,7 @@ const App = () => {
       setFoundChars([]);
       setX(0);
       setY(0);
+      highScore = [];
       feedBackElement.classList.remove("active");
       WinningModal.classList.remove("active");
       overlay.classList.remove("active");
@@ -102,11 +106,22 @@ const App = () => {
   };
 
   const getHighScoresFromDB = async () => {
+    const highScores = [];
     const querySnapshot = await getDocs(collection(firestore, "high scores"));
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
+      highScores.push(doc.data());
       highScore.push({ name: doc.id, time: doc.data().time });
     });
+    return highScores;
+  };
+
+  const fiveScoresOrNot = (highScoresFromDB, time) => {
+    if (
+      highScoresFromDB.length === 5 &&
+      highScoresFromDB.every((highScore) => highScore.time < time.textContent)
+    )
+      return;
+    else setShowInputForUser(true);
   };
 
   return (
@@ -124,6 +139,9 @@ const App = () => {
       <WinningModal
         handleModalClick={handleModalClick}
         highScores={highScore}
+        valueForInput={valueForInput}
+        handleInputChange={(e) => setValueForInput(e.target.value)}
+        display={showInputForUser}
       />
     </>
   );

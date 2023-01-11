@@ -1,5 +1,11 @@
 import "../styles/WinningModal.css";
-const WinningModal = ({ handleModalClick, highScores }) => {
+const WinningModal = ({
+  handleModalClick,
+  highScores,
+  valueForInput,
+  handleInputChange,
+  display,
+}) => {
   return (
     <>
       <div className="winning-modal" onClick={handleModalClick}>
@@ -23,6 +29,17 @@ const WinningModal = ({ handleModalClick, highScores }) => {
             <button className="restart-button">Restart</button>
           </div>
         </div>
+        {display ? (
+          <div className="username-form">
+            <input
+              type="text"
+              id="username"
+              value={valueForInput}
+              onChange={handleInputChange}
+            />
+            <button className="submit">Submit your name</button>
+          </div>
+        ) : null}
       </div>
       <div className="overlay"></div>
     </>
