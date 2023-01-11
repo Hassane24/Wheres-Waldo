@@ -11,7 +11,7 @@
   border-radius: 1rem;
   gap: 2rem;
   width: 40%;
-  height: 50%;
+  height: 60%;
   color: white;
   z-index: 100;
 }
@@ -101,4 +101,35 @@
 .overlay.active {
   opacity: 1;
   pointer-events: all;
+}
+
+/* username form styling */
+
+.username-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+input {
+  padding: 0.3rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.submit {
+  background: linear-gradient(93deg, #2a2c80 -35%, #fd1d1d);
+  border: none;
+  padding: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 0.5rem;
+  color: white;
+  transition: ease-in-out 200ms;
+}
+
+.submit:hover {
+  transform: scale(110%);
+  cursor: pointer;
 }
