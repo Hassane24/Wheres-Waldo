@@ -125,7 +125,6 @@ const App = () => {
         handleModalClick={handleModalClick}
         highScores={highScore}
       />
-      <button onClick={() => console.log(highScore)}>kkkkkkkkkk</button>
     </>
   );
 };
