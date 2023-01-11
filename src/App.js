@@ -4,7 +4,7 @@ import ImageHolder from "./components/ImageHolder";
 import NavBar from "./components/Navbar";
 import WinningModal from "./components/WinningModal";
 import { firestore } from "./firebase/firebase";
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs, setDoc } from "firebase/firestore";
 let highScore = [];
 
 const App = () => {
@@ -27,8 +27,11 @@ const App = () => {
     const timer = document.querySelector(".timer");
 
     if (foundChars.length === 2) {
-      const highScoresFromDB = await getHighScoresFromDB();
-      fiveScoresOrNot(highScoresFromDB, timer);
+      await getHighScoresFromDB();
+      highScore = highScore
+        .sort((a, b) => (a.time > b.time ? 1 : a.time < b.time ? -1 : 0))
+        .slice(0, 5);
+      fiveScoresOrNot(highScore, timer);
       setDidGameEnd(true);
       WinningModal.classList.add("active");
       overlay.classList.add("active");
@@ -70,9 +73,10 @@ const App = () => {
     }
   };
 
-  const handleModalClick = (e) => {
+  const handleModalClick = async (e) => {
     const feedBackElement = document.querySelector(".click-feed-back");
     const WinningModal = document.querySelector(".winning-modal");
+    const userTime = document.querySelector(".restart h3");
     const overlay = document.querySelector(".overlay");
 
     if (e.target.className === "restart-button") {
@@ -85,10 +89,19 @@ const App = () => {
       setFoundChars([]);
       setX(0);
       setY(0);
+      setShowInputForUser(false);
+      setValueForInput("");
       highScore = [];
       feedBackElement.classList.remove("active");
       WinningModal.classList.remove("active");
       overlay.classList.remove("active");
+    }
+
+    if (e.target.className === "submit") {
+      const input = document.querySelector("input");
+      await setDoc(doc(firestore, "high scores", input.value), {
+        time: userTime.textContent,
+      });
     }
   };
 
