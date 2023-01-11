@@ -11,7 +11,9 @@ const WinningModal = ({ handleModalClick, highScores }) => {
             <h1>High Scores</h1>
             <ol>
               {highScores.map((highScore, index) => (
-                <li key={index}>{highScore}</li>
+                <li key={index}>
+                  {highScore.name}:{highScore.time}
+                </li>
               ))}
             </ol>
           </div>

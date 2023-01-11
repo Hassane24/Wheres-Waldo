@@ -4,7 +4,8 @@ import ImageHolder from "./components/ImageHolder";
 import NavBar from "./components/Navbar";
 import WinningModal from "./components/WinningModal";
 import { firestore } from "./firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+let highScore = [];
 
 const App = () => {
   const [x, setX] = useState(0);
@@ -17,13 +18,14 @@ const App = () => {
   const [foundChars, setFoundChars] = useState([]);
   const [didGameEnd, setDidGameEnd] = useState(false);
 
-  const gameIsWon = () => {
+  const gameIsWon = async () => {
     const WinningModal = document.querySelector(".winning-modal");
     const overlay = document.querySelector(".overlay");
     const timer = document.querySelector(".timer");
     const userTime = document.querySelector(".restart h3");
 
     if (foundChars.length === 2) {
+      await getHighScoresFromDB();
       setDidGameEnd(true);
       WinningModal.classList.add("active");
       overlay.classList.add("active");
@@ -99,6 +101,14 @@ const App = () => {
     }
   };
 
+  const getHighScoresFromDB = async () => {
+    const querySnapshot = await getDocs(collection(firestore, "high scores"));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.data());
+      highScore.push({ name: doc.id, time: doc.data().time });
+    });
+  };
+
   return (
     <>
       <NavBar
@@ -113,14 +123,9 @@ const App = () => {
       />
       <WinningModal
         handleModalClick={handleModalClick}
-        highScores={[
-          "00:00:00",
-          "00:00:00",
-          "00:00:00",
-          "00:00:00",
-          "00:00:00",
-        ]}
+        highScores={highScore}
       />
+      <button onClick={() => console.log(highScore)}>kkkkkkkkkk</button>
     </>
   );
 };
