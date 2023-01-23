@@ -1,4 +1,5 @@
 import "../styles/WinningModal.css";
+import { v4 as uuidv4 } from "uuid";
 const WinningModal = ({
   handleModalClick,
   highScores,
@@ -17,7 +18,7 @@ const WinningModal = ({
             <h1>High Scores</h1>
             <ol>
               {highScores.map((highScore, index) => (
-                <li key={index}>
+                <li key={uuidv4()}>
                   {highScore.name}:{highScore.time}
                 </li>
               ))}

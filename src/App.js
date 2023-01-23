@@ -14,6 +14,7 @@ const App = () => {
   const [didGameEnd, setDidGameEnd] = useState(false);
   const [valueForInput, setValueForInput] = useState("");
   const [showInputForUser, setShowInputForUser] = useState(false);
+  const [highScores, setHighScores] = useState([]);
   const [chars, setChars] = useState([
     { charName: "no-face" },
     { charName: "vash" },
@@ -27,11 +28,7 @@ const App = () => {
     const timer = document.querySelector(".timer");
 
     if (foundChars.length === 2) {
-      await getHighScoresFromDB();
-      highScore = highScore
-        .sort((a, b) => (a.time > b.time ? 1 : a.time < b.time ? -1 : 0))
-        .slice(0, 5);
-      fiveScoresOrNot(highScore, timer);
+      await getHighScoresFromDB(timer);
       setDidGameEnd(true);
       WinningModal.classList.add("active");
       overlay.classList.add("active");
@@ -78,6 +75,7 @@ const App = () => {
     const WinningModal = document.querySelector(".winning-modal");
     const userTime = document.querySelector(".restart h3");
     const overlay = document.querySelector(".overlay");
+    const input = document.querySelector("input");
 
     if (e.target.className === "restart-button") {
       setChars([
@@ -91,17 +89,19 @@ const App = () => {
       setY(0);
       setShowInputForUser(false);
       setValueForInput("");
-      highScore = [];
+      setHighScores([]);
       feedBackElement.classList.remove("active");
       WinningModal.classList.remove("active");
       overlay.classList.remove("active");
     }
 
     if (e.target.className === "submit") {
-      const input = document.querySelector("input");
+      if (input.value === "") return;
+      setHighScores([]);
       await setDoc(doc(firestore, "high scores", input.value), {
         time: userTime.textContent,
       });
+      await getHighScoresFromDB();
     }
   };
 
@@ -118,17 +118,36 @@ const App = () => {
     }
   };
 
-  const getHighScoresFromDB = async () => {
-    const highScores = [];
+  const getHighScoresFromDB = async (timer) => {
+    let highScoresFromDB = [];
     const querySnapshot = await getDocs(collection(firestore, "high scores"));
     querySnapshot.forEach((doc) => {
-      highScores.push(doc.data());
-      highScore.push({ name: doc.id, time: doc.data().time });
+      highScoresFromDB.push({ name: doc.id, time: doc.data().time });
+      setHighScores((prevState) => {
+        let newState = [...prevState, { name: doc.id, time: doc.data().time }];
+        return newState;
+      });
     });
+
+    setHighScores((prevState) => {
+      let newState = [...prevState]
+        .sort((a, b) => (a.time > b.time ? 1 : a.time < b.time ? -1 : 0))
+        .slice(0, 5);
+
+      return newState;
+    });
+
+    highScoresFromDB.sort((a, b) =>
+      a.time > b.time ? 1 : a.time < b.time ? -1 : 0
+    );
+    highScoresFromDB = highScoresFromDB.slice(0, 5);
+
+    fiveScoresOrNot(highScoresFromDB, timer);
     return highScores;
   };
 
   const fiveScoresOrNot = (highScoresFromDB, time) => {
+    if (!time) return;
     if (
       highScoresFromDB.length === 5 &&
       highScoresFromDB.every((highScore) => highScore.time < time.textContent)
@@ -151,7 +170,7 @@ const App = () => {
       />
       <WinningModal
         handleModalClick={handleModalClick}
-        highScores={highScore}
+        highScores={highScores}
         valueForInput={valueForInput}
         handleInputChange={(e) => setValueForInput(e.target.value)}
         display={showInputForUser}
